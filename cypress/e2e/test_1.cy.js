@@ -8,3 +8,4 @@ describe('home page', () => {
       cy.get('.table-responsive div').should('have.length', 21)
            })
     })
+    
