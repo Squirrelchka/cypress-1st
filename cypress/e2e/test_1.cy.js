@@ -8,3 +8,4 @@ describe('home page', () => {
       cy.get('.brand-title').should('have.length', 1)
            })
     })
+    
