@@ -6,7 +6,7 @@
   "scripts": {
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run"
-  },
+  }, 
   "keywords": [
     "cypress"
   ],
