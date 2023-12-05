@@ -8,5 +8,4 @@ describe('home page', () => {
       cy.get('.table-responsive div').should('have.length', 21)
       cy.get('.table-responsive div').first().should('have.text', 'applications program Somalia maroon Architect')
      })
-
     })
