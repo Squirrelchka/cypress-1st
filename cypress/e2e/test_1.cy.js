@@ -1,12 +1,13 @@
 //<reference types="cypress" />
 
-describe('home page', () => {
+describe("home page", () => {
   beforeEach(() => {
-        cy.visit('https://sqlverifier-live-6e21ca0ed768.herokuapp.com/')
-  })
-    it('page loading check', () => {
-      cy.get('.brand-title').should('have.length', 1)
-           })
-    })
-    
-
+    cy.visit("/?page=1&sort=id,asc");
+  });
+  it("page loading check", () => {
+    cy.get(".brand-title").should("have.length", 1);
+  });
+  it("page loading check", () => {
+    cy.get("h2").debug().should("be.visible");
+  });
+});
