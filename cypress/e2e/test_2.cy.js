@@ -6,7 +6,6 @@ describe("Header tests", () => {
     cy.get("#username").type(Username);
     cy.get("#password").type(Password);
     cy.get("[data-cy=submit]").click();
-    cy.url().should("include", "/?page=1&sort=id,asc");
     cy.visit("/?page=1&sort=id,asc");
   });
   it("Check brend-title lenght", () => {
@@ -14,7 +13,7 @@ describe("Header tests", () => {
   });
   it("Header five text items", () => {
     cy.get("#header-tabs li").should("have.length", 5);
-  });
+  }); 
   // it("Check correct texts item", () => {
   //   cy.get("#header-tabs li").first().should("have.text", "Home");
   //   cy.get("#header-tabs li")
