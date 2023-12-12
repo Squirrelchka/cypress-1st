@@ -7,6 +7,7 @@ module.exports = defineConfig({
       Username: "gromova_student",
       Password: "Qwerty123!",
       video: true,
+      defaultCommandTimeout: 100000,
       setupNodeEvents(on, config) {
         // implement node event listeners here
       },

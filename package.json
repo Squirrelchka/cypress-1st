@@ -8,8 +8,11 @@
     "cy:run": "npx cypress run",
     "cy:run:test_1": "npm run cy:run --spec 'cypress/e2e/test_1.cy.js'",
     "cy:run:test_2": "npm run cy:run --spec 'cypress/e2e/test_2.cy.js'",
-    "cy:run:all":"npm run cy:run:test_1 && npm run cy:run:test_2"
-  }, 
+    "cy:run:all": "npm run cy:run:test_1 && npm run cy:run:test_2",
+    "test:chrome": "cypress run --browser chrome --record --key ad13270b-afbd-4efd-8b30-26eebc0572ee",
+    "test:electron": "cypress run --browser electron --record --key ad13270b-afbd-4efd-8b30-26eebc0572ee",
+    "test:all": "npm run test:chrome && npm run test:electron --record --key ad13270b-afbd-4efd-8b30-26eebc0572ee"
+  },
   "keywords": [
     "cypress"
   ],
