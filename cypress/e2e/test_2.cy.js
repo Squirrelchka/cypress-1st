@@ -1,3 +1,4 @@
+
 describe("Header tests", () => {
   beforeEach(() => {
     const Username = Cypress.config("Username");
