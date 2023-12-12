@@ -84,3 +84,4 @@ describe("Header tests", () => {
     cy.contains("Українська").click();
   });
 });
+
