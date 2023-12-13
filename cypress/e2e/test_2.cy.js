@@ -65,9 +65,9 @@ describe("Header tests", () => {
     cy.contains("Swagger").click();
     cy.get('a[href="/docs/docs"]').click();
   });
-  it("Click on en  link", () => {
+   it("Click on en  link", () => {
     cy.contains("English").click();
-    cy.contains("English").click();
+    cy.contains("Русский").click();
   });
   it("Click on fr  link", () => {
     const language = "English";
@@ -81,7 +81,7 @@ describe("Header tests", () => {
   });
   it("Click on ua  link", () => {
     const language = "English";
-    cy.contains(`${language}`).click();
+    cy.contains(language).click();
     cy.contains("Українська").click();
   });
 });
