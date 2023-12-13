@@ -17,7 +17,9 @@ describe("SignIn tests", () => {
     cy.get("#login-title").should("have.text", "Sign in");
   });
   it("login field", () => {
-    cy.get("#login-page > div > form > div.modal-body > div.row > div:nth-child(2) div").should("have.length", 3);
+    cy.get(
+      "#login-page > div > form > div.modal-body > div.row > div:nth-child(2) div"
+    ).should("have.length", 3);
   });
   it("checking input fields", () => {
     textDataSignIn.forEach((data) => {
@@ -28,7 +30,9 @@ describe("SignIn tests", () => {
     });
   });
   it("register a new account", () => {
-    cy.get("#login-page > div > form > div.modal-body > div:nth-child(4) > a").click();
+    cy.get(
+      "#login-page > div > form > div.modal-body > div:nth-child(4) > a"
+    ).click();
     cy.url().should("include", "/account/register");
   });
   it("forget password", () => {
