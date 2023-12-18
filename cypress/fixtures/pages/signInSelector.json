@@ -1,0 +1,7 @@
+{
+      "currentPasswordField": "#currentPassword",
+      "newPasswordField": "#newPassword",
+      "confirmPasswordField": "#confirmPassword",
+      "buttonField": "#password-form > button"
+      
+      }

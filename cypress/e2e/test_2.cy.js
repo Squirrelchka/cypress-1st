@@ -37,18 +37,18 @@ describe("Header tests", () => {
   it("Click on Password link", () => {
     cy.contains("Account").click();
     const accMenu = "[data-cy=accountMenu]";
-    const password = "[data-cy=passwordItem]";
+    const passwordlink = "[data-cy=passwordItem]";
     // cy.get("[data-cy=accountMenu]").find("[data-cy=passwordItem]").click();
     // cy.accountLink("[data-cy=accountMenu]", "[data-cy=passwordItem]");
-    cy.accountLink(accMenu, password);
+    cy.accountLink(accMenu, passwordlink);
   });
   it("Click on Logout link", () => {
     cy.contains("Account").click();
     const accMenu = "[data-cy=accountMenu]";
-    const logout = "[data-cy=logout]";
+    const logoutlink = "[data-cy=logout]";
     // cy.get("[data-cy=accountMenu]").find("[data-cy=logout]").click();
     // cy.accountLink("[data-cy=accountMenu]", "[data-cy=logout]");
-    cy.accountLink(accMenu, logout);
+    cy.accountLink(accMenu, logoutlink);
   });
   it("Click on Home link", () => {
     cy.contains("Home").click();
