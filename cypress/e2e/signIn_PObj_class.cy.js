@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 import { ResetPassword } from "../page/signIn.js_pageObj";
 const signInSelectorElements = require("../fixtures/pages/signInSelector.json");
 const textDataSignIn = require("../fixtures/signIn_text.json");
@@ -15,7 +15,7 @@ describe("SignIn tests", () => {
   beforeEach(() => {
     cy.visit("/login");
   });
-  
+
   it("h5 be visible", () => {
     cy.get("#login-title").should("have.text", "Sign in");
   });
@@ -36,9 +36,9 @@ describe("SignIn tests", () => {
   it("user cannot sign in with old password", () => {
     const Username = Cypress.config("Username");
     const Password = Cypress.config("Password");
-    let newPassword = faker.internet.password();//генирируем новый пароль,4 characters
+    let newPassword = faker.internet.password(); //генирируем новый пароль,4 characters
     // let newPassword = "12345";
-    let resetPassword = new ResetPassword ();
+    let resetPassword = new ResetPassword();
     cy.signIn(Username, Password);
     // cy.get("#username").type(Username);добавлено в костомн.ком
     // cy.get("#password").type(Password);
@@ -47,8 +47,8 @@ describe("SignIn tests", () => {
     const passwordlink = "[data-cy=passwordItem]";
     cy.contains("Account").click();
     cy.accountLink(accMenu, passwordlink);
-    
-    resetPassword.inputPassword(Password, newPassword, newPassword);//исп. классы
+
+    resetPassword.inputPassword(Password, newPassword, newPassword); //исп. классы
     // cy.get("#currentPassword").type(Password);
     //   cy.get("#newPassword").type(newPassword);
     //   cy.get("#confirmPassword").type(newPassword);
