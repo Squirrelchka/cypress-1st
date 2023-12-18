@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 import { ResetPassword } from "../page/signIn.js_pageObj";
 const signInSelectorElements = require("../fixtures/pages/signInSelector.json");
 const textDataSignIn = require("../fixtures/signIn_text.json");
@@ -15,7 +15,7 @@ describe("SignIn tests", () => {
   beforeEach(() => {
     cy.visit("/login");
   });
-  
+
   it("h5 be visible", () => {
     cy.get("#login-title").should("have.text", "Sign in");
   });
@@ -36,15 +36,15 @@ describe("SignIn tests", () => {
   it("user cannot sign in with old password", () => {
     const Username = Cypress.config("Username");
     const Password = Cypress.config("Password");
-    let newPassword = faker.internet.password();//генирируем новый пароль,4 characters
+    let newPassword = faker.internet.password(); //генирируем новый пароль,4 characters
     // let newPassword = "12345";
-    let resetPassword = new ResetPassword ();
+    let resetPassword = new ResetPassword();
     cy.signIn(Username, Password);
     const accMenu = "[data-cy=accountMenu]";
     const passwordlink = "[data-cy=passwordItem]";
     cy.contains("Account").click();
     cy.accountLink(accMenu, passwordlink);
-    cy.get(signInSelectorElements.currentPasswordField).type(Password);//исп.фикстуры
+    cy.get(signInSelectorElements.currentPasswordField).type(Password); //исп.фикстуры
     cy.get(signInSelectorElements.newPasswordField).type(newPassword);
     cy.get(signInSelectorElements.confirmPasswordField).type(newPassword);
     cy.get(signInSelectorElements.buttonField).click();
@@ -61,7 +61,7 @@ describe("SignIn tests", () => {
     cy.contains("Account").click();
     // const passwordlink = "[data-cy=passwordItem]";
     cy.accountLink(accMenu, passwordlink);
-    cy.get(signInSelectorElements.currentPasswordField).type(newPassword);//исп.фикстуры
+    cy.get(signInSelectorElements.currentPasswordField).type(newPassword); //исп.фикстуры
     cy.get(signInSelectorElements.newPasswordField).type(Password);
     cy.get(signInSelectorElements.confirmPasswordField).type(Password);
     cy.get(signInSelectorElements.buttonField).click();
