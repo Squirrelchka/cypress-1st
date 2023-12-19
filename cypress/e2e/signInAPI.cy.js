@@ -3,7 +3,8 @@ import { ResetPassword } from "../page/signIn.js_pageObj";
 const signInSelectorElements = require("../fixtures/pages/signInSelector.json");
 
 describe("SignIn tests UI and API", () => {
-  let newPassword = faker.internet.password();
+  // let newPassword = faker.internet.password();
+  let newPassword = "12345";
   const Username = Cypress.config("Username");
   const Password = Cypress.config("Password");
   const accMenu = "[data-cy=accountMenu]";
@@ -35,16 +36,14 @@ describe("SignIn tests UI and API", () => {
     cy.logout();
   });
 
-  it("user cannot login with old password -UI", () => {});
   
-
 it("user cannot login with old password -API,UI", () => {
    cy.request({
     method: "POST",
     url: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com/api/account/change-password",
     headers: {
       Authorization:
-        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX3RlYWNoZXIiLCJleHAiOjE3MDU1MTkzNzUsImF1dGgiOiJST0xFX1VTRVJfVEVBQ0hFUiIsImlhdCI6MTcwMjkyNzM3NX0.sJ9nOOXqeFJ9p7jl9x1Q97-6YGNj38cH058ef7JgN6H4d2C2DD9QCGRiZ5dU6aE15TxH76W5UCv7OVnAB2jriA",
+        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX2FkbWluIiwiZXhwIjoxNzAzMDkwMDgwLCJhdXRoIjoiUk9MRV9BRE1JTiIsImlhdCI6MTcwMzAwMzY4MH0.fG9F4oxjn0sospoNfJBEHRw15omgSAOwKOGAEZ9m1QQZ--joBCR-KDrSsiC-jJaqpU-ihvxKWnnvorxp0tgHtw",
     },
     body: {
       currentPassword: Password,
@@ -60,4 +59,68 @@ cy.accountLink(accMenu, passwordlink);
 resetPassword.inputPassword(newPassword, Password, Password);
 cy.logout();
 });
-})
+it("user add, change, viewing and delete task -API,UI", () => {
+    cy.request({
+   method: "POST",
+   url: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com/api/tasks",
+   headers: {
+     Authorization:
+       "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX2FkbWluIiwiZXhwIjoxNzAzMDkwMDgwLCJhdXRoIjoiUk9MRV9BRE1JTiIsImlhdCI6MTcwMzAwMzY4MH0.fG9F4oxjn0sospoNfJBEHRw15omgSAOwKOGAEZ9m1QQZ--joBCR-KDrSsiC-jJaqpU-ihvxKWnnvorxp0tgHtw",
+   },
+   body: {
+    id: null,
+  text: "test",
+    answer: "text",
+    title: "text"
+  }
+ }).then((response) => { 
+  const taskId = response.body.id;//проверяем ответ
+expect(taskId).to.not.be.null;
+cy.wrap(taskId).as("taskId");
+});
+// });
+// it("user change task -API,UI", () => {
+    cy.get("@taskId").then((taskId) => {
+cy.request({
+  method: "PATCH",
+  url: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com/api/tasks/"+taskId,
+  headers: {
+    Authorization:
+      "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX2FkbWluIiwiZXhwIjoxNzA1NTI4NjkxLCJhdXRoIjoiUk9MRV9BRE1JTiIsImlhdCI6MTcwMjkzNjY5MX0.QreSw0P5VdXVyZ-0lFxJ_lZbmF8EEqYV6GYeAhoIhBrbLIgNgyQjDDgBPqRjYhfDwjB3ArEJtIIDJXECREaFpA",
+  },
+  body:{
+    id: taskId,
+    text: "hi hi hi",
+    answer: "hihihi ",
+    title: "hi"
+  }
+}).then((response) => { 
+  expect(response.status).to.equal(200);
+});
+});
+cy.get("@taskId").then((taskId) => {
+  cy.request({
+    method: "GET",
+    url: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com/api/tasks/"+taskId,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX2FkbWluIiwiZXhwIjoxNzA1NTI4NjkxLCJhdXRoIjoiUk9MRV9BRE1JTiIsImlhdCI6MTcwMjkzNjY5MX0.QreSw0P5VdXVyZ-0lFxJ_lZbmF8EEqYV6GYeAhoIhBrbLIgNgyQjDDgBPqRjYhfDwjB3ArEJtIIDJXECREaFpA",
+    }    
+  }).then((response) => { 
+    expect(response.body.title).to.equal("hi");
+  });
+  });
+cy.get("@taskId").then((taskId) => {
+  cy.request({
+    method: "DELETE",
+    url: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com/api/tasks/"+taskId,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncm9tb3ZhX2FkbWluIiwiZXhwIjoxNzA1NTI4NjkxLCJhdXRoIjoiUk9MRV9BRE1JTiIsImlhdCI6MTcwMjkzNjY5MX0.QreSw0P5VdXVyZ-0lFxJ_lZbmF8EEqYV6GYeAhoIhBrbLIgNgyQjDDgBPqRjYhfDwjB3ArEJtIIDJXECREaFpA",
+    }
+  }).then((response) => { 
+    expect(response.status).to.equal(204);
+  });
+  });
+});
+});
