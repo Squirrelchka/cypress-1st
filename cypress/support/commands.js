@@ -48,3 +48,19 @@ Cypress.Commands.add("logout", () => {
     cy.contains("Account").click();
     cy.accountLink(accMenu, logoutlink);
   });
+  Cypress.Commands.add("clearInputField", (Username, newPassword) => {
+  cy.get("#username").clear().type(Username);
+    cy.get("#password").clear().type(newPassword);
+    cy.get("[data-cy=submit]").click();
+  });
+  Cypress.Commands.add("selectorChangePassword", (Password, newPassword, confirmNewPassword) => {
+    const accMenu = "[data-cy=accountMenu]";
+    const passwordlink = "[data-cy=passwordItem]";
+    cy.contains("Account").click();
+    cy.accountLink(accMenu, passwordlink);
+    const signInSelectorElements = require("../fixtures/pages/signInSelector.json");
+    cy.get(signInSelectorElements.currentPasswordField).type(Password);//исп.фикстуры
+    cy.get(signInSelectorElements.newPasswordField).type(newPassword);
+    cy.get(signInSelectorElements.confirmPasswordField).type(confirmNewPassword);
+    cy.get(signInSelectorElements.buttonField).click();
+  });

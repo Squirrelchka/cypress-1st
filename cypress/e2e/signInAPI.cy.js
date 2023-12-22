@@ -76,7 +76,7 @@ it("user add, change, viewing and delete task -API,UI", () => {
  }).then((response) => { 
   const taskId = response.body.id;//проверяем ответ
 expect(taskId).to.not.be.null;
-cy.wrap(taskId).as("taskId");
+cy.wrap(taskId).as("taskId");//передает в след проеврку id
 });
 // });
 // it("user change task -API,UI", () => {
