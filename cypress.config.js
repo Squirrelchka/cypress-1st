@@ -11,6 +11,12 @@ module.exports = defineConfig({
       setupNodeEvents(on, config) {
         // implement node event listeners here
       },
+      // можно логин пароль сделать так:
+      // env: {
+        // Username: "gromova_student",
+      // Password: "Qwerty123!"
+// }  и в тест добавить cy.signIn(Cypress.env('login'), Cypress.env('password'))
+      }
     },
 
 });
